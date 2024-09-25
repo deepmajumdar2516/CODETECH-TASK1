@@ -1,0 +1,33 @@
+# No need to install libraries, just import them
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+# Import pandas and load the Titanic dataset
+df = pd.read_csv('https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv')
+
+# Display the first few rows of the dataset
+df.head()
+
+# Check for missing values and data types
+df.info()
+
+# Get a statistical summary of the data
+df.describe()
+
+#Histogram
+df['Age'].plot(kind='hist', bins=30, title='Age Distribution')
+plt.show()
+
+#Scatter Plot
+df.plot.scatter(x='Age', y='Fare', title='Age vs Fare')
+plt.show()
+
+
+# Select only the numerical columns
+numerical_df = df.select_dtypes(include=['float64', 'int64'])
+
+# Plot the heatmap for numerical data
+plt.figure(figsize=(10,6))
+sns.heatmap(numerical_df.corr(), annot=True, cmap='coolwarm')
+plt.show()
